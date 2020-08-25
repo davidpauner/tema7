@@ -18,8 +18,3 @@ li:first-of-type + li {
 .dyr:first-of-type + li {
     color: red;
 }
-
-
-:nth-child(3n) {
-    color: lime;
-}
