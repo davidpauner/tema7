@@ -18,3 +18,26 @@ li:first-of-type + li {
 .dyr:first-of-type + li {
     color: red;
 }
+
+
+
+.pulse {
+    animation-name: pulse_kf;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+}
+
+@keyframes pulse_kf {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
