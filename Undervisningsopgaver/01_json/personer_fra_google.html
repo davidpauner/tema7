@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Objekter</title>
+    <style>
+        article {
+            border: 1px solid #333;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 30%;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+
+    </section>
+
+    <template>
+        <article>
+            <h2 class="navn">NAVN</h2>
+            <p class="alder">ALDER</p>
+            <p class="køn">KØN</p>
+            <p class="hobby">HOBBY</p>
+            <p class="job">JOB</p>
+            <img src="" alt="">
+        </article>
+    </template>
+    <script>
+        let container = document.querySelector("section");
+        let temp = document.querySelector("template");
+
+        const link = "https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/od6/public/values?alt=json";
+
+
+        async function hentdata() {
+            const respons = await fetch(link);
+            const json = await respons.json();
+            vis(json);
+
+        }
+
+        function vis(person) {
+            //løb igennem array "dyr"
+            person.feed.entry.forEach(person => {
+
+                const klon = temp.cloneNode(true).content;
+                klon.querySelector(".navn").textContent = person.gsx$navn.$t;
+                klon.querySelector(".alder").textContent = person.gsx$alder.$t;
+                klon.querySelector(".køn").textContent = person.gsx$køn.$t;
+                klon.querySelector(".hobby").textContent = person.gsx$hobby.$t;
+                klon.querySelector(".job").textContent = person.gsx$job.$t;
+                klon.querySelector("img").src = person.gsx$billede.$t;
+
+                container.appendChild(klon);
+
+
+            })
+
+        }
+
+        hentdata();
+    </script>
+</body></html>
