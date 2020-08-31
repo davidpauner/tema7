@@ -47,9 +47,13 @@
             padding: 20px;
             font-family: fantasy;
             font-weight: 900;
+
+
+
+        }
+
+        .valgt {
             color: crimson;
-
-
         }
     </style>
 </head>
@@ -126,6 +130,11 @@
         function filterBTNs() {
             filter = this.dataset.køn;
             document.querySelector("h1").textContent = this.textContent;
+
+            document.querySelectorAll(".filter").forEach((btn) => {
+                btn.classList.remove("valgt");
+            })
+            this.classList.add("valgt");
             visPersoner();
         }
 
