@@ -39,13 +39,15 @@
 </head>
 
 <body>
+
     <section>
 
     </section>
 
     <template>
         <article>
-            <h2 class="navn">NAVN</h2>
+
+            <h2 class=" navn">NAVN</h2>
             <p class="alder">ALDER</p>
             <p class="køn">KØN</p>
             <p class="hobby">HOBBY</p>
@@ -54,6 +56,7 @@
         </article>
     </template>
     <script>
+        let personer;
         let container = document.querySelector("section");
         let temp = document.querySelector("template");
 
@@ -64,6 +67,7 @@
         async function hentdata() {
             const respons = await fetch(link);
             const json = await respons.json();
+            personer = await respons.json()
             vis(json);
 
         }

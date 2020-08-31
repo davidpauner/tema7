@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JS Objekter</title>
+    <style>
+        section {
+            width: 90vw;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-gap: 10px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+
+
+        }
+
+
+
+        article {
+            border: 1px solid #333;
+            padding: 10px;
+            background-color: burlywood;
+            text-align: center;
+            border-radius: 25px;
+            font-family: fantasy;
+        }
+
+        img {
+            max-width: 30%;
+        }
+
+        h2 {
+            color: dimgrey;
+
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+
+    </section>
+
+    <template>
+        <article>
+            <h2 class="navn">NAVN</h2>
+            <p class="køn">KØN</p>
+            <img src="" alt="">
+        </article>
+    </template>
+    <script>
+        let personer;
+        let filter = "k";
+        document.addEventListener("DOMContentLoaded", loadJSON);
+
+
+
+
+        async function loadJSON() {
+            const JSONData = await fetch("https://spreadsheets.google.com/feeds/list/1mtHhpoEkYqVqr1TSnKQ1_sQZWI7FRVjcw3H1oatDOVQ/od6/public/values?alt=json");
+            personer = await JSONData.json();
+            visPersoner();
+
+        }
+
+        function visPersoner() {
+            const templatePointer = document.querySelector("template");
+            const listPointer = document.querySelector("section");
+
+            personer.feed.entry.forEach(person => {
+                if (filter == person.gsx$køn.$t) {
+                    console.log(person);
+
+                    const minKlon = templatePointer.cloneNode(true).content;
+
+                    minKlon.querySelector("h2").textContent = person.gsx$navn.$t;
+
+                    minKlon.querySelector("img").src = person.gsx$billede.$t;
+
+                    listPointer.appendChild(minKlon);
+                }
+
+
+
+
+
+            })
+
+        }
+
+        loadJSON();
+    </script>
+</body></html>
