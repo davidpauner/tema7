@@ -55,61 +55,11 @@
         .valgt {
             color: crimson;
         }
-
-        #popup {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: none;
-
-
-
-        }
-
-        #popup article {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            margin: 4rem auto;
-            transform: translate(-50%, -50%);
-            border-radius: 25px;
-            padding: 12px;
-            background-color: white;
-            width: 80vw;
-            height: 80vh;
-            text-align: center;
-            padding: 20px;
-
-
-        }
-
-        #luk {
-            position: fixed;
-            top: 1em;
-            right: 2em;
-            background-color: white;
-            color: black;
-            border-radius: 5px;
-            padding .5em;
-
-        }
     </style>
 </head>
 
 <body>
 
-    <div id="popup">
-        <article>
-            <div id="luk">X</div>
-            <h2></h2>
-            <img src="" alt="">
-            <p></p>
-        </article>
-
-    </div>
 
     <template>
         <article>
@@ -173,16 +123,24 @@
 
                     minKlon.querySelector("img").src = person.gsx$billede.$t;
 
+                    minKlon.querySelector("article").addEventListener("click", () => visDetaljer(person));
+
                     listPointer.appendChild(minKlon);
                 }
-
-
-
 
 
             })
 
         }
+
+
+        function visDetaljer(person) {
+            console.log(person);
+
+            location.href = `06-detalje.html?id=${person.gsx$id}`;
+        }
+
+
 
         function addEventListenersToButtons() {
             document.querySelectorAll(".filter").forEach((btn) => {

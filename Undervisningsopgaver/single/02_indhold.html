@@ -67,6 +67,7 @@
 
 
 
+
         }
 
         #popup article {
@@ -164,43 +165,53 @@
             listPointer.innerHTML = "";
 
             personer.feed.entry.forEach(person => {
-                if (filter == "alle" || filter == person.gsx$køn.$t) {
-                    console.log(person);
+                        if (filter == "alle" || filter == person.gsx$køn.$t) {
+                            console.log(person);
 
-                    const minKlon = templatePointer.cloneNode(true).content;
+                            const minKlon = templatePointer.cloneNode(true).content;
 
-                    minKlon.querySelector("h2").textContent = person.gsx$navn.$t;
+                            minKlon.querySelector("h2").textContent = person.gsx$navn.$t;
 
-                    minKlon.querySelector("img").src = person.gsx$billede.$t;
+                            minKlon.querySelector("img").src = person.gsx$billede.$t;
 
-                    listPointer.appendChild(minKlon);
-                }
+                            minKlon.querySelector("article").addEventListener("click", () => visDetaljer(person));
+
+                            listPointer.appendChild(minKlon);
+                        }
+
+                        function visDetaljer(person) {
+                            console.log(person);
+                            popop.querySelector("h2").textContent = person.gsx$navn.$t;
+                            popop.querySelector("h2").textContent + " " + person.gsx$efternavn.$t;
+                            popop.querySelector("img").src = person.gsx$billede.$t;
+                            popop.style.display = "block";
+
+                        }
+
+                        function addEventListenersToButtons() {
+                            document.querySelectorAll(".filter").forEach((btn) => {
+                                btn.addEventListener("click", filterBTNs);
+                            });
+
+
+
+
+                            function filterBTNs() {
+                                filter = this.dataset.køn;
+                                document.querySelector("h1").textContent = this.textContent;
+                                document.querySelectorAll(".filter").forEach((btn) => {
+                                    btn.classList.remove("valgt");
+                                })
+                                this.classList.add("valgt");
+                                visPersoner();
+
+                            }
 
 
 
 
 
-            })
 
-        }
-
-        function addEventListenersToButtons() {
-            document.querySelectorAll(".filter").forEach((btn) => {
-                btn.addEventListener("click", filterBTNs);
-            });
-        }
-
-        function filterBTNs() {
-            filter = this.dataset.køn;
-            document.querySelector("h1").textContent = this.textContent;
-
-            document.querySelectorAll(".filter").forEach((btn) => {
-                btn.classList.remove("valgt");
-            })
-            this.classList.add("valgt");
-            visPersoner();
-        }
-
-        loadJSON();
+                            loadJSON();
     </script>
 </body></html>

@@ -173,16 +173,25 @@
 
                     minKlon.querySelector("img").src = person.gsx$billede.$t;
 
+                    minKlon.querySelector("article").addEventListener("click", () => visDetaljer(person));
+
                     listPointer.appendChild(minKlon);
                 }
-
-
-
 
 
             })
 
         }
+
+
+        function visDetaljer(person) {
+            console.log(person);
+            popup.querySelector("h2").textContent = person.gsx$navn.$t;
+            popup.querySelector("img").src = person.gsx$billede.$t;
+            popup.style.display = "block";
+        }
+
+
 
         function addEventListenersToButtons() {
             document.querySelectorAll(".filter").forEach((btn) => {
