@@ -5,55 +5,35 @@
     <meta charset="UTF-8">
     <title>JS Objekter</title>
     <style>
-        section {
-            width: 100vw;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-gap: 10px;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-
-
-        }
-
-
-
-        article {
-            border: 1px solid #333;
-            padding: 10px;
-            background-color: burlywood;
-            text-align: center;
-            border-radius: 25px;
-            font-family: fantasy;
-        }
-
         img {
-            max-width: 30%;
+            width: 100%;
+            height: 100vh;
         }
 
-        h2 {
-            color: dimgrey;
-
+        #detalje {
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
         }
 
-        header {
-            padding: 40px;
-            text-align: center;
-
-
+        #detalje #luk {
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-size: 4rem;
+            margin: 1em;
         }
 
-        button {
-            padding: 20px;
-            font-family: fantasy;
-            font-weight: 900;
+        #detalje #person {
+            width: 60vw;
+            min-height: 50vh;
+            padding: 4rem;
+            background-color: white;
 
 
-
-        }
-
-        .valgt {
-            color: crimson;
         }
     </style>
 </head>
@@ -61,30 +41,13 @@
 <body>
 
 
-    <template>
-        <article>
-
-            <h2 class="navn">NAVN</h2>
-            <p class="køn">KØN</p>
-            <img src="" alt="">
-        </article>
-    </template>
-
-
-    <main>
-
-        <h1>Alle</h1>
-        <header>
-            <button class="filter valgt" data-køn="alle">Alle</button>
-            <button class="filter" data-køn="m">Mænd</button>
-            <button class="filter" data-køn="k">Kvinder</button>
-            <button class="filter" data-køn="andet">Andet</button>
-        </header>
-
-        <section id="list"></section>
-
-    </main>
-
+    <section ide="detalje">
+        <article class="person"></article>
+        <button class="luk"></button>
+        <h2></h2>
+        <img src="" alt="">
+        <p></p>
+    </section>
 
 
 
